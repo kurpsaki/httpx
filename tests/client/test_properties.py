@@ -22,6 +22,13 @@ def test_client_base_url_with_trailing_slash():
     assert client.base_url == "https://www.example.org/path/"
 
 
+def test_client_base_url_with_query_params():
+    client = httpx.Client()
+    client.base_url = "https://www.example.org/path?query=1"
+    assert isinstance(client.base_url, httpx.URL)
+    assert client.base_url == "https://www.example.org/path/?query=1"
+
+
 def test_client_headers():
     client = httpx.Client()
     client.headers = {"a": "b"}
